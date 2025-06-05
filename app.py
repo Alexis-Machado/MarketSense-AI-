@@ -175,7 +175,7 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
     
-    /* Sección de análisis premium */
+    /* Sección de análisis */
     .analysis-section {
         background: white;
         padding: 3rem;
@@ -202,7 +202,7 @@ st.markdown("""
         font-size: 1.1rem;
     }
     
-    /* Área de texto ultra moderna */
+    /* Área de texto */
     .stTextArea > div > div > textarea {
         border: 2px solid #e8eaf6;
         border-radius: 15px;
@@ -235,7 +235,7 @@ st.markdown("""
         background: white;
     }
     
-    /* Botones premium */
+    /* Botones */
     .stButton > button {
         background: var(--primary-gradient);
         color: white;
@@ -296,7 +296,7 @@ st.markdown("""
         box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
     
-    /* Resultados ultra premium */
+    /* Resultados */
     .result-card-positive {
         background: var(--success-gradient);
         color: white;
@@ -351,7 +351,7 @@ st.markdown("""
         z-index: 1;
     }
     
-    /* Métricas premium */
+    /* Métricas */
     .metrics-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -385,7 +385,7 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
     
-    /* Progress bar ultra moderna */
+    /* Progress bar */
     .progress-container-premium {
         background: rgba(255,255,255,0.2);
         border-radius: 10px;
@@ -419,7 +419,7 @@ st.markdown("""
         100% { left: 100%; }
     }
     
-    /* Instrucciones premium */
+    /* Instrucciones */
     .instructions-card {
         background: linear-gradient(135deg, #f8f9ff 0%, #e8eaf6 100%);
         padding: 2.5rem;
@@ -474,7 +474,7 @@ st.markdown("""
         font-size: 1.05rem;
     }
     
-    /* Footer premium */
+    /* Footer */
     .footer-premium {
         background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
         color: white;
@@ -566,7 +566,7 @@ VOCAB_SIZE = 10000
 MAXLEN = 100
 MODEL_PATH = "sentiment_rnn_imdb.h5"
 
-# 4. Cargar el word_index con desplazamiento adecuado
+# 4. Cargamos el word_index con desplazamiento adecuado
 @st.cache_resource
 def cargar_imdb_word_index():
     word_index_original = imdb.get_word_index()
@@ -577,7 +577,7 @@ def cargar_imdb_word_index():
     word_to_index["<OOV>"] = 2
     return word_to_index
 
-# 5. Convertir texto en secuencia de índices para la red
+# 5. Convertimos el texto en secuencia de índices para la red
 def texto_a_secuencia(texto, word_to_index):
     texto = texto.lower().strip()
     palabras = texto.split()
@@ -635,7 +635,7 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    # Cargar modelo y tokenizer
+    # Cargamos modelo y tokenizer
     @st.cache_resource
     def cargar_modelo_y_tokenizador():
         modelo = tf.keras.models.load_model(MODEL_PATH)
@@ -748,7 +748,7 @@ def main():
             progress_container.empty()
             status_container.empty()
 
-            # Realizar predicción
+            # Realizamos predicción
             secuencia = texto_a_secuencia(texto_usuario, word_to_index)
             pred = modelo.predict(secuencia, verbose=0)[0][0]
             
@@ -757,7 +757,7 @@ def main():
             es_positivo = prob_pos > 50
             confianza = max(prob_pos, prob_neg)
 
-            # Resultados Ultra
+            # Resultados
             if es_positivo:
                 st.markdown(f"""
                 <div class="result-card-positive fade-in-up pulse">
@@ -926,7 +926,7 @@ def main():
         </div>
         """, unsafe_allow_html=True)
 
-    # Footer Ultra
+    # Footer 
     st.markdown("""
     <div class="footer-premium fade-in-up">
         <div class="footer-title">🚀 Potenciado por Tecnología de Vanguardia</div>
@@ -958,6 +958,6 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-# 7. Ejecutar
+# 7. Ejecutamos
 if __name__ == "__main__":
     main()
